@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fst-italic col-6 fw-bold" href="/">e-waiter</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="float-end">
+            <div class="collapse navbar-collapse  col-6 " id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <!-- {% for c in category %}
+                <span>
+                <li class="nav-item text-center ">
+                    <a class="nav-link border border-secondary rounded text-white" href="{% url 'categoryselected' c.id table %}">{{c.category_name}}</a>
+                    
+                </li>
+                </span>
+                {%endfor%} -->
+                <span>
+                    <li class="nav-item text-center ">
+                        <a class="nav-link border border-secondary rounded text-white" href='{% url "tablewiseorder" %}'>SortbyTable</a>
+                    </li>
+                </span>
+                <span>
+                    <li class="nav-item text-center ">
+                        <a class="nav-link border border-secondary rounded text-white" href='{% url "listorders" %}'>AllOrders</a>
+                    </li>
+                </span>
+            </ul>
+            
+            </div>
+        </div>
+      </div>
+  </nav>

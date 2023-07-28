@@ -1,0 +1,149 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fst-italic fw-bold" href="/">e-waiter</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              {% for t in table %}
+              <span>
+                <li class="nav-item text-center ">
+                    <a class="nav-link border border-secondary rounded text-white" href="{% url 'billtableselect' t.id %}">{{t.table_name}}</a>
+                    
+                </li>
+              </span>
+              {%endfor%}
+             
+            </ul>
+            
+          </div>
+        </div>
+    </nav>
+    <div class="bg-dark bg-gradient text-white  py-1 px-5  d-grid " >
+        <div class="container">
+            <a class="text-white"  href="/">Home /</a>
+            <a class="text-white"  href="{% url 'cashier' %}">Cashier</a>
+        </div>
+    </div>
+    <!-- <h1>god is love</h1> -->
+    <div class="py-5">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-5 mx-auto ">
+                    <div class="card shadow ">
+                        <div class="card-body cartdiv ">
+                            <div class="container col-md-11">
+                                <div class="  text-center p-4  " >
+                                    <h4 class="bold">Ordered Item</h4>
+                                </div>
+                                <div>
+                                    {% if order %}
+                                        <table class="table table-hover text-center table-bordereds table-stripeds">
+                                            <thead>
+                                                <tr>
+                                                    {% comment %} <th>Item</th> {% endcomment %}
+                                                    <th>Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in order %}
+                                                    <tr>
+                                                        
+                                                        <td>{{i.item.item_name }}</td>
+                                                        <td>{{i.quantity }}</td>
+                                                        <td>{{i.item.item_price|stringformat:'d' }}</td>
+                                                    </tr>
+                                                
+                                                {% endfor %}
+                                                
+                                                <!-- <tr class="fw-bold my-4">
+                                                    
+                                                    <td></td>
+                                                    <td >Total</td>
+                                                    <td>{{total_price |stringformat:'d'}}   </td>
+                        
+                                                </tr>
+                                                 -->
+                                            </tbody>
+                                        </table>
+                                        <!-- <a href="/"class="float-start mr-4 btn btn-outline-success ">Back</a>
+                                        <a href= "{% url 'checkoutitem' table %}"class="float-lg-end mr-4 btn btn-outline-success">Checkout</a> -->
+                                    {% else %}   
+                                        <div class="text-center">
+                                            <hr>
+                                            <h4 >Your order table is empty</h4>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mx-auto ">
+                    <div class="card shadow ">
+                        <div class="card-body cartdiv ">
+                            <div class="container col-md-11">
+                                <div class="  text-center p-4  " >
+                                    <h4 class="bold">Delivered Item</h4>
+                                </div>
+                                <div>
+                                    {% if deli %}
+                                        <table class="table table-hover text-center table-bordereds table-stripeds">
+                                            <thead>
+                                                <tr>
+                                                    {% comment %} <th>Item</th> {% endcomment %}
+                                                    <th>Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in deli %}
+                                                    <tr>
+                                                        {% comment %} <td>
+                                                            <img src="{{ i.item.image.url}}" class='me-3' width="50px">
+                                                            
+                                                        </td> {% endcomment %}
+                                                        <td>{{i.item.item_name }}</td>
+                                                        <td>{{i.quantity }}</td>
+                                                        <td>{{i.item.item_price|stringformat:'d' }}</td>
+                                                    </tr>
+                                                
+                                                {% endfor %}
+                                                
+                                                <tr class="fw-bold my-4">
+                                                    {% comment %} <td></td> {% endcomment %}
+                                                    <td></td>
+                                                    <td >Grand Total</td>
+                                                    <td>{{grandtotal |stringformat:'d'}}   </td>
+                        
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        
+                                        <!-- <a href="/"class="float-start mr-4 btn btn-outline-success ">Back</a> -->
+                                        <a href= "{% url 'billredy' tb %}"class="float-lg-end mr-4 btn w-100 btn-success">Bill Redy</a>
+                                    {% else %}   
+                                        <div class="text-center">
+                                            <hr>
+                                            <h4 >Your order table is empty</h4>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

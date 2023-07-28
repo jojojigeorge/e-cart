@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% include 'inc/navbar.html' %}
+    <div class="bg-dark bg-gradient text-white  py-1 px-5  d-grid " >
+        <div class="container">
+            <a class="text-white"  href="/">Home /</a>
+            <a class="text-white"  href="{% url 'tableselect' table %}">Item List </a>
+        </div>
+    </div>
+
+    
+    <div class="py-5">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-9 mx-auto ">
+                    {% if item %}
+                        {% comment %} list item include {% endcomment %}
+                        {% include 'inc/display_item.html' %}
+
+
+                        {% comment %} <a href="{% url 'index'%}"class="float-start mr-4 btn btn-outline-success ">Back</a>
+                        <a href= "{% url 'checkoutitem' table %}"class="float-lg-end mr-4 btn btn-outline-success">Checkout</a> {% endcomment %}
+                    {% else %}
+                        <h4>Cart is empty</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+
+
+    

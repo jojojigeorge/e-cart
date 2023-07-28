@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fst-italic fw-bold" href="/">e-waiter</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              {% for t in table %}
+              <span>
+                <li class="nav-item text-center ">
+                    <a class="nav-link border border-secondary rounded text-white" href="{% url 'billtableselect' t.id %}">{{t.table_name}}</a>
+                    
+                </li>
+              </span>
+              {%endfor%}
+              
+            </ul>
+            
+          </div>
+        </div>
+    </nav>
+    <div class="bg-dark bg-gradient text-white  py-1 px-5  d-grid " >
+        <div class="container">
+            <a class="text-white"  href="/">Home /</a>
+            <a class="text-white"  href="/">Item List </a>
+        </div>
+    </div>
+    <div class="text-center col-8 container">
+      <div class="card p-4 shadow m-4 ">
+        <h4 class="text-center ">Select Table From The Navbar</h4>
+      </div>
+    </div>
+{% endblock content %}
+    

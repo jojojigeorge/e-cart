@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    
+    <section class=" m-2 text-center">
+        
+        <div class="card text-bg-dark container">
+            <img src="{% static 'images/chef6.png' %}" class="card-img opacity-50" alt="...">
+            <div class="card-img-overlay row ">
+                <!-- navbar -->
+                <div>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded-3 ">
+                        <div class="container-fluid ">
+                            <div>
+                                <img  src="{% static 'images/favicon.png' %} " width="45" height="45" class="float-start my-auto d-inline-block">
+                                <a class="navbar-brand text-dark fst-italic fw-bold" href="/">e-waiter</a>
+                            </div>
+                            <div>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                    <ul class="navbar-nav">
+                                        <span>
+                                            <li class="nav-item text-center  ">
+                                            <a class="nav-link border  border-secondary rounded text-dark fw-bold" href="{% url 'cashier' %}">Billing</a>
+                                            </li>
+                                        </span>
+                                        <span>
+                                            <li class="nav-item text-center ">
+                                            <a class="nav-link border border-secondary rounded text-dark fw-bold" href="listOrders">Kitchen</a>
+                                            </li>
+                                        </span>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </nav>
+                </div>
+                <!-- navbar -->
+                {% for d in tab %}
+                <div class="col-3  mx-auto">
+                    
+                    
+                    <div class="card m-auto   text-center " style="width:15vw ;">
+                        <div class="card-body ">
+                        <h5 class="card-title text-uppercase text-dark">{{d.table_name}}</h5>
+                        
+                        {% if d.status %}
+                            
+                        <a href="{% url 'nextorder' d.id %}" class="btn  btn-outline-success mx-auto">Next order</a>
+
+                                  
+                            
+                                
+                        {% else %}
+                            <a href="{% url 'tableselect' d.id %}" class="btn btn-dark">Place order</a>
+                        {% endif %}
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+    </section>
+        
+{% endblock content %}

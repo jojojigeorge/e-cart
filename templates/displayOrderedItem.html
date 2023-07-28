@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% include 'inc/navbar.html' %}
+<div class="bg-dark bg-gradient text-white  py-1 px-5  d-grid " >
+    <div class="container">
+        <a class="text-white"  href="/">Home /</a>
+        <a class="text-white"  href="{% url 'tableselect' table %}">Item List /</a>
+        <a class="text-white"  href="#">Order Summary </a>
+    </div>
+</div>
+<div class="col-md-8 mx-auto mt-5">
+    <div class="card shadow mb-5">
+        <div class="card-body mt-2 p-5 ">
+            <h4 class="text-center  p-2 mb-4   font-weight-bold">Order Summary</h4>
+            {% if cartitem %}
+                <table class="table table-hover text-center table-bordereds table-stripeds">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Name</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in cartitem %}
+                            <tr>
+                                <td>
+                                    <img src="{{ i.item.image.url}}" class='me-3' width="50px">
+                                    
+                                </td>
+                                <td>{{i.item.item_name }}</td>
+                                <td>{{i.quantity }}</td>
+                                <td>{{i.item.item_price|stringformat:'d' }}</td>
+                            </tr>
+                        
+                        {% endfor %}
+                        
+                        <tr class="fw-bold my-4">
+                            <td></td>
+                            <td></td>
+                            <td >Grand Total</td>
+                            <td>{{total_price |stringformat:'d'}}   </td>
+
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <a href="{% url 'placeOrder' table %}" class="btn btn-outline-success float-end">Place Order</a>
+                <!-- <button type="submit"class=" btn float-end me-3  btn-outline-success">Place Order</button> -->
+                <!-- <button type="submit"class=" btn float-end me-3  btn-outline-success">Back</button> -->
+                <a href="{% url 'tableselect' table %}" class="btn btn-outline-success">Back</a>
+                <!-- <hr>
+                <div class="">
+                <h6 class="font-weight-bold ">Grand Total
+                    <span class="float-end me-5 font-weight-bold">{{total_price |stringformat:'d'}}</span>
+                </h6>
+                </div> -->
+                
+
+            {% else %}   
+                <div class="text-center">
+                    <hr>
+                    <h4 >Your order table is empty</h4>
+                </div>
+            {% endif %}
+            
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

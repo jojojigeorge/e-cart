@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% include 'inc/chef_navbar.html' %}
+
+<div class="bg-dark bg-gradient text-white  py-1 px-5  d-grid " >
+    <div class="container">
+        <a class="text-white"  href="/">Home /</a>
+        <a class="text-white"  href="#">Order Summary </a>
+    </div>
+</div>
+<div class="col-md-8 mx-auto mt-5">
+    <div class="card shadow mb-5">
+        <div class="card-body mt-2 p-5 ">
+            <h4 class="text-center  p-2 mb-4   font-weight-bold">All Order Summary</h4>
+            {% if order %}
+                <table class="table table-hover text-center table-bordereds table-stripeds">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>ordered at</th>
+                            <th>Name</th>
+                            <th>Table no:</th>
+                            <th>Qty</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in order %}
+                            <tr>
+                                <td>
+                                    <img src="{{ order.item.image.url}}" class='me-3' width="50px">
+                                    
+                                </td>
+                                <td>{{order.created_at }}</td>
+                                <td>{{order.item.item_name }}</td>
+                                <td>{{order.table.table_name }}</td>
+                                <td>{{order.quantity }}</td>
+                                <td><a href="{% url 'itemdelivery' order.id %}"class="btn btn btn-outline-success">Delivered</a></td>
+                            </tr>
+                        
+                        {% endfor %}
+                        
+                        <!-- <tr class="fw-bold my-4">
+                            <td></td>
+                            <td></td>
+                            <td >Grand Total</td>
+                            <td>{{total_price |stringformat:'d'}}   </td>
+
+                        </tr> -->
+                        
+                    </tbody>
+                </table>
+                
+                <!-- <hr>
+                <div class="">
+                <h6 class="font-weight-bold ">Grand Total
+                    <span class="float-end me-5 font-weight-bold">{{total_price |stringformat:'d'}}</span>
+                </h6>
+                </div> -->
+                <!-- <button type="submit"class=" btn float-end me-3  btn-outline-success">Place Order</button> -->
+                <!-- <button type="submit"class=" btn float-end me-3  btn-outline-success">Back</button> -->
+
+            {% else %}   
+                <div class="text-center">
+                    <hr>
+                    <h4 >Complete all order request</h4>
+                </div>
+            {% endif %}
+                
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

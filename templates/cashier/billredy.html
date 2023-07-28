@@ -1,0 +1,125 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+
+    body
+    {
+        counter-reset: Serial;           /* Set the Serial counter to 0 */
+    }
+
+    table
+    {
+        border-collapse: separate;
+    }
+
+    tr td:first-child:before
+    {
+    counter-increment: Serial;      /* Increment the Serial counter */
+    content: " " counter(Serial); /* Display the counter */
+    }
+</style>
+
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fst-italic fw-bold" href="/">e-waiter</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <!-- {% for t in table %}
+              <span>
+                <li class="nav-item text-center ">
+                    <a class="nav-link border border-secondary rounded text-white" href="/">{{t.table_name}}</a>
+                    
+                </li>
+              </span>
+              {%endfor%} -->
+             
+            </ul>
+            
+          </div>
+        </div>
+    </nav>
+    <div class="bg-dark jojihome bg-gradient text-white  py-1 px-5  d-grid "  >
+        <div class="container">
+            <a class="text-white "  href="/">Home /</a>
+            <a class="text-white"  href="{% url 'cashier' %}">Cashier</a>
+        </div>
+    </div>
+    <!-- <h1>god is love</h1> -->
+    <div class="py-5">
+        
+        <div class="container ">
+            <div class="row ">
+               
+                <div class="col-md-5 mx-auto ">
+                    <div class="card shadow  text-center">
+                        <h6 class="bold bg-dark w-100 text-white py-5 px-5  d-grid">ROYAL LAXUARY HOTEL</h6>
+                        <div class="card-body cartdiv ">
+                            <div class="container col-md-11">
+                                
+                                <div>
+                                    {% if deli %}
+                                        <table   class="table auto-index table-hover text-center table-bordereds table-stripeds">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in deli %}
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>{{i.item.item_name }}</td>
+                                                        <td>{{i.quantity }}</td>
+                                                        <td>{{i.item.item_price|stringformat:'d' }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <div class="fw-bold ">
+                                            <div>
+                                                <div class="d-flex justify-content-evenly">
+                                                    <div class="p-1">Grand Total</div>
+                                                    <div class="p-1">{{grandtotal |stringformat:'d'}}</div>
+
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <a type="button" href="{% url 'billpaid' table %}" class="btn mt-3 mb-2 w-100 btn-outline-dark">Bill Paid</a>
+                                        <!-- <div id="paypal-button-container"></div> -->
+                                    {% else %}   
+                                        <div class="text-center">
+                                            <hr>
+                                            <h4 >Your order table is empty</h4>
+                                        </div>
+                                        
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    
+{% endblock content %}
+    
+
