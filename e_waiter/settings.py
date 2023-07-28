@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^b@@v+4=t2s_uu&tp$#_ky6*)*j4kq9+xz#h=lh3ukq3y=6udz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ewaiter.pythonanywhere.com']
+ALLOWED_HOSTS = ['ewaiter.pythonanywhere.com','localhost']
 
 
 # Application definition
@@ -134,7 +134,7 @@ USE_TZ = True
 #     BASE_DIR/'static'
 # ]
 
-STATIC_ROOT=BASE_DIR/'static'
+# STATIC_ROOT=BASE_DIR/'static'
 
 STATIC_URL = 'static/'
 
@@ -146,9 +146,9 @@ MEDIA_ROOT=BASE_DIR/'static/uploads'
 #     BASE_DIR/'static'
 # ]
 
-# STATICFILES_DIRS = [
-#     BASE_DIR/'static'
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
 
 
 
